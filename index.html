@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Seletores CSS com Pets</title>
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            color: #4682b4;
+            margin-top: 0;
+        }
+
+        /* Estilo da imagem */
+        #imagem-topo {
+            width: 100%;
+            max-width: 800px; /* Limita o tamanho máximo da imagem */
+            display: block;
+            margin: 0 auto 20px auto; /* Centraliza a imagem e adiciona margem abaixo */
+        }
+
+        /* Estilos das divs principais */
+        .container-cachorros,
+        .container-gatos,
+        .container-pets {
+            background-color: #f9f9f9;
+            border: 2px solid #87cefa;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            color: #4682b4; /* Letra azul para todos os itens */
+            width: 100%;
+            max-width: 800px; /* Mesma largura máxima da imagem */
+            box-sizing: border-box; /* Inclui padding e border na largura total */
+        }
+
+        .container-gatos {
+            border-color: #4682b4;
+            color: #9370db; /* Letra roxa para todos os itens */
+        }
+
+        .container-gatos span:not(:last-child)::after {
+            content: " | "; /* Adiciona separador entre os itens */
+            color: #9370db; /* Cor do traço */
+        }
+
+        .container-pets {
+            border-color: #9370db;
+            background-color: #e6e6fa;
+        }
+
+        /* Exceção para SRD Caramelo */
+        .item-isolado {
+            color: #ffa07a; /* Mantendo a cor do SRD Caramelo */
+        }
+
+        /* Estilos do formulário */
+        #form-preferencia label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        #form-preferencia select {
+            margin-bottom: 15px;
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        #aceitar-termos {
+            margin-top: 10px;
+        }
+
+        #btn-enviar {
+            background-color: #4682b4;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #btn-enviar:hover {
+            background-color: #5a9bd4;
+        }
+
+        /* Estilos da mensagem de feedback */
+        #mensagem-feedback {
+            color: #4682b4;
+            font-style: italic;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <img id="imagem-topo" src="https://petpillow.com.br/wp-content/uploads/2018/09/animais-domesticos-destaque.jpg" alt="Pets">
+
+    <h1>Exemplo de Seletores CSS com Pets</h1>
+
+    <div class="container-cachorros" data-test="div-cachorros">
+        <h2>Raças de Cachorros</h2>
+        <ul>
+            <li class="raca-cachorro">Golden Retriever</li>
+            <li class="raca-cachorro">Bulldog Francês</li>
+            <li class="raca-cachorro">Labrador</li>
+            <li class="raca-cachorro">Poodle</li>
+            <li class="raca-cachorro">Beagle</li>
+            <li class="raca-cachorro">Chihuahua</li>
+            <li class="raca-cachorro">Dachshund</li>
+            <li class="raca-cachorro">Pastor Alemão</li>
+            <li class="raca-cachorro">Boxer</li>
+            <li class="raca-cachorro">Rottweiler</li>
+        </ul>
+        <div class="item-isolado" id="id-item-especial">
+            ESPECIAL: SRD Caramelo
+        </div>
+    </div>
+
+    <div class="container-gatos" name="gatos">
+        <h2>Raças de Gatos</h2>
+        <span class="raca-gato" id="gato-1">Persa</span>
+        <span class="raca-gato" id="gato-2">Siamês</span>
+        <span class="raca-gato" id="gato-3">Maine Coon</span>
+        <span class="raca-gato" id="gato-4">Bengal</span>
+        <span class="raca-gato" id="gato-5">Sphynx</span>
+        <span class="raca-gato" id="gato-6">British Shorthair</span>
+    </div>
+
+    <div class="container-pets">
+        <form id="form-preferencia">
+            <label>Qual é o seu pet favorito?</label>
+            <select name="opcao">
+                <option class="pet-select" value="none">Selecione</option>
+                <option class="pet-select" value="cachorro">Cachorro</option>
+                <option class="pet-select" value="gato">Gato</option>
+                <option class="pet-select" value="passaro">Pássaro</option>
+                <option class="pet-select" value="peixe">Peixe</option>
+                <option class="pet-select" value="hamster">Hamster</option>
+                <option class="pet-select" value="outro">Outro</option>
+            </select>
+
+            <label>
+                <input type="checkbox" id="aceitar-termos">
+                Aceito os termos e condições
+            </label>
+
+            <input id="btn-enviar" type="submit" value="Enviar" data-test="enviar">
+        </form>
+        <p id="mensagem-feedback" style="display: none;">*.* Obrigado por compartilhar conosco!</p>
+    </div>
+
+    <script>
+        document.getElementById("form-preferencia").addEventListener("submit", function (event) {
+            event.preventDefault(); // Impede o envio real do formulário
+            document.getElementById("mensagem-feedback").style.display = "block"; // Mostra a mensagem de feedback
+        });
+    </script>
+</body>
+
+</html>
